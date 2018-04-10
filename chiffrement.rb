@@ -1,15 +1,24 @@
 def chiffre_de_cesar(mystring, nb)
 
   result = mystring.downcase.split('').map! do |lettre|
-    lettre.ord - 97
+
+    i = lettre.ord - 97
+    puts i
+      if (i+nb)>25 && i>=0 && i<=25
+        j = (i+nb)%25-1
+      elsif i>=0 && i<=25
+        j = i+nb
+      else
+        lettre.ord
+      end
   end
 
   print result
 
 
-  return result.map! {|lettre| lettre.chr}.join
+  return result.map! {|lettre| (lettre.ord+97).chr}.join.capitalize
 
 end
 
 
-print chiffre_de_cesar("abcdez", 5)
+print chiffre_de_cesar("What a string!", 5)
